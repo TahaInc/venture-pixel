@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Venture Pixel">
+    <meta name="keywords" content="booking">
+    <meta name="theme-color" content="#fffcf5">
+    <link rel="icon" href="assets/icons/icon (dark).png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" href="assets/icons/icon (light).png" media="(prefers-color-scheme: light)">
+    <title id="title">Venture Pixel - Booking</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/booking.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+        integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+</head>
+
+<body data-scroll-container>
+    <div id="transition"></div>
+    <header>
+        <div id="navbar">
+            <a id="logo_link" href="home.html"><img id="logo" src="assets/icons/logo.png" alt="Venture Pixel"></a>
+
+            <div id="hamburger_menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div id="nav_content">
+                <a href="home.html" class="nav_links"><span class="nav_text" data-language="home">Home</span></a>
+                <a href="services.html" class="nav_links"><span class="nav_text"
+                        data-language="services">Services</span></a>
+                <a href="pricing.html" class="nav_links"><span class="nav_text"
+                        data-language="pricing">Pricing</span></a>
+                <a href="booking.html" class="nav_links"><span class="nav_text"
+                        data-language="booking">Booking</span></a>
+                <a href="login.html" class="nav_links"><span class="nav_text" data-language="login">Login</span></a>
+                <div class="nav_links" id="language_menu">
+                    <h3 class="language_selector" id="en_selector">EN</h3>
+                    <h3 class="language_selector" id="fr_selector">FR</h3>
+                    <h3 class="language_selector" id="sp_selector">SP</h3>
+                </div>
+                <div id="contact_menu">
+                    <a class="nav_contact_icon" href="https://www.instagram.com/"><img
+                            src="assets/icons/social/instagram.png" alt="Instagram" width="25px">
+                    </a>
+                    <a class="nav_contact_icon" href="mailto:venturepiixel@gmail.com"><img
+                            src="assets/icons/social/email.png" alt="Email" width="30px">
+                    </a>
+                </div>
+                <div id="testimonials">
+                    <span id="quote">&#10077;</span>
+                    <div id="testimony_text">
+                        <h4 id="review_message"></h4>
+                        <h3 id="review_author"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/nav.js" defer></script>
+        </div>
+    </header>
+
+    <main>
+        <h2 data-language="book_your_shoot" class="section_title" data-scroll-section>Book Your Photoshoot</h2>
+
+        <div class="info_card" id="booking_form" data-scroll-section>
+            <div class="card">
+                <h3 data-language="contact_information" class="form_title">Contact information</h3>
+
+                <div class="input_wrapper">
+                    <input type="input" class="input_field" placeholder="Name" name="name" id="name" />
+                    <label for="name" class="input_label" data-language="booking_name">Full name</label>
+                </div>
+
+                <div class="input_wrapper">
+                    <input type="email" class="input_field" placeholder="Email" name="email" id="email" />
+                    <label for="email" class="input_label" data-language="booking_email">Email</label>
+                </div>
+
+                <div class="input_wrapper">
+                    <input type="phone" class="input_field" placeholder="Phone number" name="phone" id="phone" />
+                    <label for="phone" class="input_label" data-language="booking_phone">Phone number</label>
+                </div>
+
+                <h3 data-language="time_place" class="form_title">Time & place</h3>
+
+                <div class="input_wrapper">
+                    <input type="input" class="input_field" placeholder="Location" name="location" id="location" />
+                    <label for="location" class="input_label" data-language="booking_location">Location</label>
+                </div>
+
+                <div class="input_wrapper" id="date_time_picker">
+                    <input type="date" class="input_field" placeholder="yyyy-mm-dd" name="date" id="date" />
+                    <input type="time" class="input_field" value="13:00" name="time" id="time">
+                </div>
+            </div>
+            <div class="card">
+                <div id="package_specific_wrapper">
+                    <h3 data-language="photoshoot_information" class="form_title">Photoshoot information</h3>
+
+                    <div class="input_wrapper">
+                        <input type="input" class="input_field" placeholder="Party, wedding, car, etc" name="event"
+                            id="event" />
+                        <label for="event" class="input_label" data-language="event_type">Event type</label>
+                    </div>
+
+                    <div id="comment_wrapper">
+                        <textarea spellcheck="false" name="message" id="comment_input" maxlength=""
+                            placeholder="(Optional) Enter additional comments/details"></textarea>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 data-language="pricing" class="form_title">Pricing</h3>
+                    <h4 class="form_subtitle"><a class="link" href="pricing.html"
+                            data-language="pricing_information">View
+                            full pricing
+                            information</a></h4>
+
+                    <div class="package_selector" id="base_selector">
+                        <div class="pricing_selector" data-price="0">
+                            <h4 class="price_text" data-language="base_price">150$</h4>
+                            <h4 data-language="one_hour" class="price_desc">1 hour</h4>
+                            <h4 data-language="fifteen_pictures" class="price_desc">15 pictures</h4>
+                            <h4 data-language="one_location" class="price_desc">1 locations</h4>
+                        </div>
+                        <div class="pricing_selector" data-price="1">
+                            <h4 class="price_text" data-language="mid_price">200$</h4>
+                            <h4 data-language="one_and_half_hour" class="price_desc">1.5 hours</h4>
+                            <h4 data-language="twenty_pictures" class="price_desc">20 pictures</h4>
+                            <h4 data-language="two_location" class="price_desc">2 locations</h4>
+                        </div>
+                        <div class="pricing_selector" data-price="2">
+                            <h4 class="price_text" data-language="pro_price">250$</h4>
+                            <h4 data-language="two_hour" class="price_desc">2 hours</h4>
+                            <h4 data-language="thirty_five_pictures" class="price_desc">35 pictures</h4>
+                            <h4 data-language="multi_location" class="price_desc">&#8734; locations</h4>
+                        </div>
+                    </div>
+
+                    <div class="package_addon_selector">
+                        <!-- <div class="pricing_selector addon_selector" data-addon="digital">
+                            <h4 class="price_desc" id="addon_text"><span data-language="photo_editing">Photo
+                                    editing</span>
+                                <span class="addon_span" data-language="photo_editing_price">+15$</span>
+                            </h4>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="booknow_wrapper">
+                <h4 data-language="" id="error_msg">&shy;</h4>
+                <button class="button" data-language="book_now">Book now</button>
+            </div>
+        </div>
+
+        <div class="info_card" id="msg_card">
+            <h3 class="booking_msg" data-language="booking_received">Your booking has been received!</h3>
+            <h4 class="booking_msg" data-language="expect_email">Expect an email from us soon to confirm your
+                booking.</h4>
+            <h3 class="access_code"><span id="access_code_msg" data-language="your_access_code">Your access code is
+                </span>: <b id="access_code"></b></h3>
+        </div>
+
+        <div id="msg_card_bg"></div>
+    </main>
+
+    <footer data-scroll-section>
+        <h4 id="copyright" data-language="copyright">© Copyright 2022 Venture Pixel - All Rights Reserved
+        </h4>
+        <div id="contact_menu_footer">
+            <a class="nav_contact_icon" href="https://www.instagram.com/"><img src="assets/icons/social/instagram.png"
+                    alt="Instagram" width="20px">
+            </a>
+            <a class="nav_contact_icon" href="mailto:venturepiixel@gmail.com"><img src="assets/icons/social/email.png"
+                    alt="Email" width="25px">
+            </a>
+        </div>
+    </footer>
+
+    <script src="js/translate.js"></script>
+    <script src="js/scroll.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#transition").fadeOut(400);
+            scroll.update();
+        });
+
+        $("#location").autocomplete({
+            source: [""]
+        })
+
+        $("#event").autocomplete({
+            source: dictionary.event_type_autocomplete
+        })
+
+        var selectedPlan;
+
+        $(".pricing_selector").not($(".addon_selector")).click(function () {
+            selectedPlan = $(this).attr("data-price");
+            ($(".pricing_selector").not($(".addon_selector"))).removeClass("selected_button");
+            $(this).toggleClass("selected_button");
+        })
+
+
+        $(".addon_selector").click(function () {
+            $(this).toggleClass("selected_button");
+        })
+
+        $("#access_code").click(function () {
+            localStorage.setItem('accessid', $("#access_code").html());
+            window.location.href = 'view.html';
+        })
+
+        $(".button").click(function () {
+            var error = false;
+            $("#error_msg").html("&shy;");
+
+            $(".input_field").each(function () {
+                if ($(this).val() == '') {
+                    $("#error_msg").html(dictionary.empty_fields);
+                    error = true;
+                }
+            });
+
+            if (!error) {
+                if (!$(".pricing_selector").not($(".addon_selector")).hasClass("selected_button")) {
+                    $("#error_msg").html(dictionary.select_pricing);
+                    error = true;
+                }
+            }
+
+            if (!error) {
+                $(".button").attr("data-language", "sending");
+                $(".button").html(dictionary.sending);
+
+                $.ajax({
+                    type: "POST",
+                    url: "booking.php",
+                    data: {
+                        "status": "submit",
+                        "name": $("#name").val(),
+                        "email": $("#email").val(),
+                        "phone": $("#phone").val(),
+                        "location": $("#location").val(),
+                        "date": $("#date").val(),
+                        "time": $("#time").val(),
+                        "event": $("#event").val(),
+                        "language": language,
+                        "plan": selectedPlan,
+                        "comment": $("#comment_input").val(), "photo_editing":
+                            $(".pricing_selector[data-addon=editing]").hasClass("selected_button")
+                    },
+                    success: function (result) {
+                        if (result == "error") {
+                            $("#error_msg").attr("data-language", "error_occured");
+                            $("#error_msg").html(dictionary.error_occured);
+
+                            $(".button").attr("data-language", "error");
+                            $(".button").html(dictionary.error);
+                        } else {
+                            $("#access_code").html(result);
+
+                            $(".button").attr("data-language", "sent");
+                            $(".button").html(dictionary.sent);
+
+                            $("#msg_card").animate({ "top": "100px" }, 600);
+                            $("#msg_card_bg").fadeIn(1);
+                            $("#booking_form").css("transition", "0.5s");
+                            $("#booking_form").addClass("booking_disabled");
+                            setTimeout(function () { $("#booking_form").css("transition", "0s") }, 600);
+
+                            $("#msg_card_bg").click(function () {
+                                $("#msg_card").animate({ "top": "-400px" }, 600);
+                                $("#msg_card_bg").fadeOut(1);
+                                $("#booking_form").css("transition", "0.5s");
+                                $("#booking_form").removeClass("booking_disabled");
+                                setTimeout(function () { $("#booking_form").css("transition", "0s") }, 600);
+
+                                $(".button").attr("data-language", "book_now");
+                                $(".button").html(dictionary.book_now);
+                            })
+                        }
+                    }
+                });
+            }
+
+        });
+
+    </script>
+</body>
+
+</html>

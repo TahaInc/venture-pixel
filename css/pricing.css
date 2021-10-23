@@ -1,0 +1,157 @@
+#packages_table {
+  display: flex;
+  width: 80%;
+  margin: 3% auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.package_plans {
+  flex: 1;
+  padding: 5% 0;
+}
+
+.package_plans:nth-child(2) {
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+}
+
+.price_text {
+  font-weight: lighter;
+  margin-bottom: 15%;
+}
+
+.package_description {
+  text-align: center;
+  font-weight: lighter;
+  font-size: calc(1vw + 1vh);
+  margin: 3%;
+}
+
+#addon_table {
+  display: flex;
+  width: 50%;
+  margin: 3% auto 5% auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.release_details {
+  flex: 1;
+  padding: 5% 2%;
+}
+
+.release_text {
+  text-align: center;
+  font-weight: lighter;
+  margin-bottom: 5%;
+}
+
+.release_desc {
+  text-align: center;
+}
+
+.release_price {
+  text-align: center;
+  margin-top: 2%;
+}
+
+#booking_process {
+  display: grid;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.steps {
+  margin-top: 2px;
+}
+
+.steps:not(:last-child)::after {
+  position: relative;
+  display: block;
+  left: 18px;
+  width: 2px;
+  height: 100px;
+  content: "";
+  background-color: rgb(0 0 0 / 60%);
+  z-index: -1;
+}
+
+.step_circle {
+  font-family: "Circular";
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  color: #fff;
+  text-align: center;
+  background: rgb(0, 0, 0);
+  border-radius: 50%;
+  font-size: 1.2em;
+}
+
+.step_desc {
+  font-family: "Circular";
+  font-size: 2em;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#booknow_wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+@media (max-width: 600px) {
+  .section_title {
+    font-size: 7vw;
+  }
+
+  #packages_table {
+    margin: 10% auto;
+    width: 100%;
+  }
+
+  .price_text {
+    margin-bottom: 20%;
+  }
+
+  .package_description {
+    font-size: 3vw;
+    margin: 8% 5%;
+  }
+
+  #addon_table {
+    margin: 3% auto 15% auto;
+  }
+
+  .release_text {
+    font-size: 4vw;
+  }
+
+  .release_desc {
+    font-size: 2.5vw;
+  }
+
+  .release_price {
+    font-size: 3.5vw;
+  }
+
+  .steps:not(:last-child)::after {
+    left: 15px;
+    height: 50px;
+  }
+
+  .step_circle {
+    font-size: 1em;
+  }
+
+  .step_desc {
+    font-size: 0.8em;
+  }
+
+  #booknow_wrapper {
+    margin-top: 20%;
+  }
+}

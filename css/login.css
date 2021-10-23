@@ -1,0 +1,56 @@
+main {
+  padding-top: 80px;
+  height: calc(100vh - 180px);
+}
+
+#login_wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section_title {
+  font-size: min(calc(1vw + 2.5vh + 8vmin), 6em);
+}
+
+#login_form {
+  display: flex;
+  width: 60%;
+  align-items: center;
+  flex-direction: column;
+  margin: 5% auto 0 auto;
+}
+
+#accessid {
+  width: 80%;
+  max-width: 400px;
+  font-size: 2rem;
+  font-family: "Circular";
+  padding: 0.5em;
+  margin-top: 4%;
+  border-radius: 5px;
+  outline: none;
+  border: 0;
+}
+
+#input_wrapper {
+  width: 100%;
+  margin-top: 1%;
+}
+
+.button {
+  margin: auto;
+}
+
+#error_msg {
+  font-size: min(calc(1vw + 1vh), 2em);
+  margin: 10px;
+  color: red;
+  text-align: center;
+}
+
+footer {
+  position: absolute;
+}

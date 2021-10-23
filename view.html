@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Venture Pixel">
+    <meta name="keywords" content="your_pictures">
+    <meta name="theme-color" content="#fffcf5">
+    <link rel="icon" href="assets/icons/icon (dark).png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" href="assets/icons/icon (light).png" media="(prefers-color-scheme: light)">
+    <title id="title">Venture Pixel - Your pictures</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/view.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="js/scroll.js" defer></script>
+    <script src="js/translate.js" defer></script>
+    <script src="js/payment.js" type="text/babel" defer></script>
+</head>
+
+<body data-scroll-container>
+    <div id="transition"></div>
+    <header>
+        <div id="navbar">
+            <a id="logo_link" href="home.html"><img id="logo" src="assets/icons/logo.png" alt="Venture Pixel"></a>
+
+            <div id="cart_menu">
+                <h3 id="cart_amount">0</h3>
+                <img id="cart_icon" src="assets/icons/cart.png" width="40%">
+            </div>
+
+
+            <div id="hamburger_menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div id="nav_content">
+                <a href="home.html" class="nav_links"><span class="nav_text" data-language="home">Home</span></a>
+                <a href="services.html" class="nav_links"><span class="nav_text"
+                        data-language="services">Services</span></a>
+                <a href="pricing.html" class="nav_links"><span class="nav_text"
+                        data-language="pricing">Pricing</span></a>
+                <a href="booking.html" class="nav_links"><span class="nav_text"
+                        data-language="booking">Booking</span></a>
+                <a href="login.html" class="nav_links"><span class="nav_text" data-language="login">Login</span></a>
+                <div class="nav_links" id="language_menu">
+                    <h3 class="language_selector" id="en_selector">EN</h3>
+                    <h3 class="language_selector" id="fr_selector">FR</h3>
+                    <h3 class="language_selector" id="sp_selector">SP</h3>
+                </div>
+                <div id="contact_menu">
+                    <a class="nav_contact_icon" href="https://www.instagram.com/"><img
+                            src="assets/icons/social/instagram.png" alt="Instagram" width="25px">
+                    </a>
+                    <a class="nav_contact_icon" href="mailto:venturepiixel@gmail.com"><img
+                            src="assets/icons/social/email.png" alt="Email" width="30px">
+                    </a>
+                </div>
+                <div id="testimonials">
+                    <span id="quote">&#10077;</span>
+                    <div id="testimony_text">
+                        <h4 id="review_message"></h4>
+                        <h3 id="review_author"></h3>
+                    </div>
+                </div>
+            </div>
+
+            <div id="cart_content">
+                <div id="cart_nav">
+                    <h2 data-language="your_order">Your order</h2>
+                    <h2 id="close_cart">&times;</h2>
+                </div>
+
+                <div id="cart_items_list">
+
+                </div>
+
+                <div id="cart_total">
+                    <div id="top_checkout">
+                        <h3 id="total_amount"><span data-language="total">Total</span>: <span id="total_price">0$</span>
+                        </h3>
+                        <button class="button" id="show_checkout" data-language="checkout">Checkout</button>
+                    </div>
+                    <div class="hidden_checkout">
+                        <div id="payment_options_wrapper">
+                            <h2 id="payment_option_text" data-language="select_payment_option">Select a payment option
+                            </h2>
+                            <div id="payment_options">
+                                <div class="payment_option" data-payment-selection="applepay">
+                                    <h3 class="payment_option_text"><img src="assets/icons/google-logo.png"
+                                            id="google_icon"> Pay</h3>
+                                </div>
+                                <div class="payment_option" data-payment-selection="card">
+                                    <h3 class="payment_option_text" data-language="card">Card</h3>
+                                </div>
+                                <div class="payment_option" data-payment-selection="e-transfer">
+                                    <h3 class="payment_option_text">E-transfer</h3>
+                                </div>
+                                <div class="payment_option" data-payment-selection="cash">
+                                    <h3 class="payment_option_text" data-language="cash">Cash</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payment_selection" id="payment_etransfer">
+                            <div id="etransfer_wrapper">
+                                <input style="margin: 0;" type="input" class="input_field" placeholder="Address"
+                                    name="Address" id="address_etransfer" />
+                                <h3 id="etransfer_desc"><span data-language="etransfer_desc">Send a e-transfer to
+                                        <span id="email_span">venturepiixel@gmail.com</span> with your
+                                        Access ID as the message:</span> <b><span id="etransfer_access_code"></span></b>
+                                </h3>
+                                <div id="checkout_wrapper">
+                                    <div id="etransfer_error" role="alert"></div>
+                                    <button class="button" id="order_etransfer" data-language="order">Order</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payment_selection" id="payment_cash">
+                            <div id="etransfer_wrapper">
+                                <input style="margin: 0;" type="input" class="input_field" placeholder="Address"
+                                    name="Address" id="address_cash" />
+                                <h3 id="etransfer_desc" data-language="cash_desc">Have cash/cheque ready when your
+                                    prints are delivered. You will get a text message on delivery day.
+                                </h3>
+                                <div id="checkout_wrapper">
+                                    <div id="cash_error" role="alert"></div>
+                                    <button class="button" id="order_cash" data-language="order">Order</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payment_selection" id="payment_applepay">
+                            <div id="cart_payment_request_button">
+                            </div>
+                        </div>
+
+                        <div class="payment_selection" id="payment_card">
+                            <input type="input" class="input_field" placeholder="Address" name="Address"
+                                id="address_card" />
+
+                            <div id="cart_card_form">
+                            </div>
+
+                            <div id="checkout_wrapper">
+                                <div id="cart_card_errors" role="alert"></div>
+                                <button class="button" id="cart_checkout" data-language="checkout">Checkout</button>
+                            </div>
+                            <div id="security_info">
+                                <img id="info_icon" src="assets/icons/i.png">
+                                <h3 id="security_message" data-language="security_message">Your card
+                                    information is encrypted and cannot be read by Venture Pixel</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="cart_content_backdrop"></div>
+            <script src="js/nav.js" defer></script>
+        </div>
+    </header>
+
+    <main>
+        <div data-scroll-section>
+            <h2 class="section_title"><span data-language="greeting">Hi</span> <span id="name"></span>,</h2>
+            <h3 id="message_subtitle"></h3>
+        </div>
+
+        <div id="info_card" data-scroll-section>
+            <h3 class="card_title_info" data-language="package_info">Package info</h3>
+            <h3 class="card_info"><span data-language="pictures">Pictures</span>: <span class="sub_info"
+                    id="pictures"></span></h3>
+            <h3 class="card_info"><span data-language="editing">Editing</span>: <span class="sub_info"
+                    id="editing"></span></h3>
+            <h3 class="card_info"><span data-language="access_id">Access ID</span>: <span class="sub_info"
+                    id="access_code"></span></h3>
+            <h3 id="logout" data-language="logout">Logout</h3>
+        </div>
+
+        <div data-scroll-section>
+            <img id="error_img" src="assets/icons/error.png">
+            <h3 id="error_msg"></h3>
+        </div>
+
+        <div id="editing_offer" data-scroll-section>
+            <h2 id="editing_title" data-language="editing_title">Make your pictures pop!</h2>
+            <h3 id="editing_subtitle"><span data-language="editing_subtitle">Add professional editing for</span>
+                <span data-language="photo_editing_price">$10</span>
+            </h3>
+            <div id="editing_choice">
+                <button class="button editing_button" id="no_editing" data-language="get_pictures_now">Get my pictures
+                    now</button>
+                <button class="button editing_button" id="add_editing" data-language="add_editing">Add editing (+2-3
+                    days)</button>
+            </div>
+        </div>
+
+        <div id="booking_payment" data-scroll-section>
+            <h2 id="booking_payment_title"><span data-language="your_total_is">Your total is: </span><span
+                    id="booking_total">0$</span></h2>
+
+            <div id="booking_payment_option">
+                <div class="booking_payment_options" data-booking-payment-selection="card">
+                    <h2 class="booking_payment_text" data-language="card">Card</h2>
+                </div>
+                <div class="booking_payment_options" data-booking-payment-selection="e-transfer">
+                    <h2 class="booking_payment_text">E-transfer</h2>
+                </div>
+                <div class="booking_payment_options" data-booking-payment-selection="cash">
+                    <h2 class="booking_payment_text" data-language="cash_cheque">Cash/cheque</h3>
+                </div>
+            </div>
+
+            <div class="booking_payment_selection" id="booking_payment_selection_placeholder"></div>
+
+            <div class="booking_payment_selection" id="booking_payment_card">
+                <div id="booking_payment_request_button">
+
+                </div>
+
+                <h2 id="booking_payment_seperator" data-language="or">OR</h2>
+
+                <div id="booking_card_form">
+
+                </div>
+
+                <div id="checkout_wrapper">
+                    <div id="booking_card_errors" role="alert"></div>
+                    <button class="button" id="booking_checkout" data-language="checkout">Checkout</button>
+                </div>
+
+                <div id="security_info">
+                    <img id="info_icon" src="assets/icons/i.png">
+                    <h3 id="security_message" data-language="security_message">Your card
+                        information is encrypted and cannot be read by Venture Pixel</h3>
+                </div>
+            </div>
+
+            <div class="booking_payment_selection" id="booking_payment_etransfer">
+                <h3 class="booking_payment_selection_text"><span data-language="etransfer_desc">Send a e-transfer to
+                        <span id="email_span">venturepiixel@gmail.com</span> with your Access ID as the message:</span>
+                    <b><span id="booking_etransfer_access_code"></span></b>.
+                </h3>
+            </div>
+
+            <div class="booking_payment_selection" id="booking_payment_cash">
+                <h3 class="booking_payment_selection_text"><span data-language="cash_cheque_desc">Bring
+                        cash/cheque to pay at your photoshoot on </span><b><span id="photoshoot_date"></span></b></h3>
+            </div>
+        </div>
+
+        <div id="gallery" data-scroll-section></div>
+
+        <div id="editing_payment_menu">
+            <h2 id="editing_title"><span data-language="your_total_is">Your total is</span> <span
+                    data-language="photo_editing_price">$10</span></h2>
+            <div class="editing_payment_selection" id="editing_payment_card">
+                <div id="editing_payment_request_button">
+
+                </div>
+
+                <h2 id="editing_payment_seperator" data-language="or">OR</h2>
+
+                <div id="editing_card_form">
+
+                </div>
+
+                <div id="checkout_wrapper">
+                    <div id="booking_card_errors" role="alert"></div>
+                    <button class="button" id="editing_checkout" data-language="checkout">Checkout</button>
+                </div>
+
+                <div id="security_info">
+                    <img id="info_icon" src="assets/icons/i.png">
+                    <h3 id="security_message" data-language="security_message">Your card
+                        information is encrypted and cannot be read by Venture Pixel</h3>
+                </div>
+            </div>
+
+            <h2 id="editing_payment_seperator" data-language="or">OR</h2>
+
+            <div class="editing_payment_selection" id="editing_payment_etransfer">
+                <h3 id="editing_payment_selection_text"><span data-language="etransfer_desc">Send a e-transfer to
+                        <span id="email_span">venturepiixel@gmail.com</span> with your Access ID as the message:</span>
+                    <b><span id="editing_etransfer_access_code"></span></b>.
+                </h3>
+                <button class="button" id="editing_confirm" data-language="confirm">Confirm</button>
+            </div>
+        </div>
+
+        <div id="img_view_wrapper">
+            <div id="img_view">
+                <h2 id="close_print">&times;</h2>
+
+                <div id="img_picture_view">
+                    <img src="" id="picture_view">
+                </div>
+
+                <div id="img_info_view">
+                    <h2 class="img_info_title" data-language="buy_prints">Buy prints</h2>
+
+                    <div id="printing_sizes">
+                        <div class="printing_size_div" data-size="4x6" data-size-index=0>
+                            <h3 class="printing_size_text">4x6</h3>
+                        </div>
+                        <div class="printing_size_div" data-size="5x7" data-size-index=1>
+                            <h3 class="printing_size_text">5x7</h3>
+                        </div>
+                        <div class="printing_size_div" data-size="8x10" data-size-index=2>
+                            <h3 class="printing_size_text">8x10</h3>
+                        </div>
+                        <div class="printing_size_div" data-size="8.5x11" data-size-index=3>
+                            <h3 class="printing_size_text">8.5x11</h3>
+                        </div>
+                    </div>
+
+                    <div id="printing_add_cart">
+                        <h3 class="price_text" id="printing_price" data-language="">-$</h3>
+                        <button class="button" id="add_order" data-language="pick_size">Pick a size</button>
+                    </div>
+
+                    <h2 class="img_info_title" id="download_title" data-language="download">Download</h2>
+
+                    <div id="download_element">
+                        <h3 id="free_text" data-language="free">Free</h3>
+                        <a class="button bypass_link" id="download" data-language="download" href=""
+                            download>Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="img_view_bg"></div>
+
+        <div id="printing_gallery"></div>
+
+        <div class="info_card" id="msg_card">
+            <h3 class="booking_msg" data-language="order_received">Your order has been received!</h3>
+            <h4 class="booking_msg" data-language="expect_shipping">You should get your prints in 5-7 days.</h4>
+            <h3 class="order_id"><span id="order_id_msg" data-language="your_order_id">Your order number is</span>: <b
+                    id="order_id"></b></h3>
+        </div>
+
+        <div id="msg_card_bg"></div>
+    </main>
+
+    <footer data-scroll-section>
+        <h4 id="copyright" data-language="copyright">© Copyright 2022 Venture Pixel - All Rights Reserved
+        </h4>
+        <div id="contact_menu_footer">
+            <a class="nav_contact_icon" href="https://www.instagram.com/"><img src="assets/icons/social/instagram.png"
+                    alt="Instagram" width="20px">
+            </a>
+            <a class="nav_contact_icon" href="mailto:venturepiixel@gmail.com"><img src="assets/icons/social/email.png"
+                    alt="Email" width="25px">
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel" src="js/gallery.js"></script>
+    <script type="text/babel" src="js/cart.js"></script>
+
+    <script type="text/babel">
+        var information, cart;
+        var accessid = localStorage.getItem('accessid');
+
+        $.ajax({
+            type: "POST",
+            url: "updateInfo.php",
+            dataType: "json",
+            cache: false,
+            async: false,
+            data: {
+                status: "get_cart",
+                accessid: accessid,
+            },
+            success: function (result) {
+                cart = JSON.parse(result);
+            }
+        });
+
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "POST",
+                url: "login.php",
+                async: false,
+                cache: false,
+                data: { "status": "submit", "accessid": accessid },
+                success: function (result) {
+                    if (result == "admin") {
+                        window.location.href = 'admin.html';
+                    } else if (result == "false" || result == "logout") {
+                        window.location.href = 'login.html';
+                    } else if (result == "true") {
+                        $.ajax({
+                            url: "data/" + accessid + "/info.json",
+                            async: false,
+                            cache: false,
+                            dataType: "json",
+                            success: function (result) {
+                                information = result;
+                            }
+                        });
+
+                        $("#name").html(information.Name.split(" ")[0]);
+                        $("#access_code").html(accessid);
+                        $("#etransfer_access_code").html(accessid);
+                        $("#booking_etransfer_access_code").html(accessid);
+                        $("#pictures").html(information.Pictures);
+                        $("#editing").attr("data-language", information.Photo_editing === "true" ? "professionally_edited" : "raw_pictures");
+                        $("#editing").html(information.Photo_editing === "true" ? dictionary.professionally_edited : dictionary.raw_pictures);
+
+                        if (information.Status == 1) {
+                            $("#message_subtitle").html(dictionary.expect_answer_soon)
+                            $("#error_img").css("display", "flex")
+                            $("#error_msg").attr("data-language", "booking_not_confirmed")
+                            $("#error_msg").html(dictionary.booking_not_confirmed);
+                            scroll.update();
+                            $("#transition").fadeOut(400);
+                        } else if (information.Status == 2) {
+                            $("#message_subtitle").html(dictionary.almost_done)
+                            startBookingPayment()
+                            $("#photoshoot_date").html(information.Date);
+
+                            if (information.payment_type != "cash") {
+                                $("#error_img").css("display", "flex")
+                                $("#error_msg").attr("data-language", "awaiting_payment")
+                                $("#error_msg").html(dictionary.awaiting_payment);
+                            }
+
+                            $(".booking_payment_selection").fadeOut(200)
+                            $("#booking_payment_" + information.payment_type).delay(100).fadeIn(200)
+                            $('[data-booking-payment-selection="' + information.payment_type.replace('-', '') + '"]').addClass("booking_payment_selected")
+                            $("#booking_payment").fadeIn(100)
+                            scroll.update();
+
+                            $(".booking_payment_options").click(function () {
+                                if (!$(this).hasClass("booking_payment_selected")) {
+                                    $(".booking_payment_options").removeClass("booking_payment_selected")
+                                    $(".booking_payment_selection").fadeOut(200)
+                                    $("#booking_payment_" + $(this).attr("data-booking-payment-selection").replace('-', '')).delay(100).fadeIn(200)
+                                    $(this).addClass("booking_payment_selected")
+                                    scroll.update()
+
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "updateInfo.php",
+                                        dataType: "json",
+                                        async: false,
+                                        cache: false,
+                                        data: {
+                                            status: "update_payment_option",
+                                            option: $(this).attr("data-booking-payment-selection"),
+                                            accessid: accessid,
+                                        },
+                                    });
+                                }
+                            })
+                        } else if (!(new Date(information.Date.split("-")[0], information.Date.split("-")[1] - 1, information.Date.split("-")[2]) <= new Date(new Date().toDateString()))) {
+                            $("#message_subtitle").html(dictionary.see_you_soon)
+                            $("#error_img").css("display", "flex")
+                            $("#error_msg").attr("data-language", "get_ready_for_booking")
+                            $("#error_msg").html(dictionary.get_ready_for_booking);
+                            $("#confirmed_date").html(information.Date.replaceAll("-", "/"));
+                            scroll.update();
+                            $("#error_img").attr("src", "assets/icons/confirmed.png")
+                            $("#transition").fadeOut(400);
+                        } else if (information.Status == 3) {
+                            $("#message_subtitle").html(dictionary.wait_for_pictures)
+                            $("#error_img").css("display", "flex")
+                            $("#error_msg").attr("data-language", "pictures_not_ready")
+                            $("#error_msg").html(dictionary.pictures_not_ready);
+                            scroll.update();
+                            $("#transition").fadeOut(400);
+                        } else if (information.Status == 4) {
+                            startEditingPayment()
+                            ReactDOM.render(<GalleryView pictures={information.Pictures} accessid={accessid} preview={true} />, document.querySelector("#gallery"));
+
+                            $(".gallery_img").click(function () {
+                                scroll.scrollTo(0);
+                            })
+
+                            if (information.Photo_editing === "false") {
+                                $("#editing_offer").css("display", "block")
+                                $("#editing_etransfer_access_code").html(accessid);
+
+                                $(".section_title").css("display", "none")
+                                $("#message_subtitle").css("display", "none")
+                                $("#info_card").css("display", "none")
+
+                                $("#no_editing").click(function () {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "updateInfo.php",
+                                        async: false,
+                                        cache: false,
+                                        data: { status: "no_editing", accessid: accessid },
+                                        success: function (result) {
+                                            if (result == "success") {
+                                                location.reload();
+                                            }
+                                        },
+                                    });
+                                })
+
+                                $("#add_editing").click(function () {
+                                    $("#editing_payment_menu, #img_view_bg").fadeIn(200)
+                                    scroll.stop()
+
+                                    $("#editing_confirm").click(function () {
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "updateInfo.php",
+                                            async: false,
+                                            cache: false,
+                                            data: { status: "etransfer_editing", accessid: accessid },
+                                            success: function (result) {
+                                                if (result == "success") {
+                                                    location.reload();
+                                                }
+                                            },
+                                        });
+                                    })
+
+                                    $("#img_view_bg").click(function () {
+                                        $("#editing_payment_menu, #img_view_bg").fadeOut(200)
+                                        scroll.start()
+                                    })
+                                })
+                            } else {
+                                $("#message_subtitle").html(dictionary.wait_for_pictures)
+                                $("#error_img").css("display", "flex")
+                                $("#error_msg").attr("data-language", "awaiting_etransfer")
+                                $("#error_msg").html(dictionary.awaiting_etransfer);
+                            }
+
+                            setTimeout(function () {
+                                scroll.update();
+                                $("#transition").fadeOut(400);
+                            }, 500);
+                        } else if (information.Status == 5) {
+                            ReactDOM.render(<GalleryView pictures={information.Pictures} accessid={accessid} preview={true} />, document.querySelector("#gallery"));
+                            $(".gallery_img").css("pointer-events", "none")
+
+                            $("#message_subtitle").html(dictionary.wait_for_pictures)
+                            $("#error_img").css("display", "flex")
+                            $("#error_msg").attr("data-language", "edited_pictures_not_ready")
+                            $("#error_msg").html(dictionary.edited_pictures_not_ready);
+
+                            setTimeout(function () {
+                                scroll.update();
+                                $("#transition").fadeOut(400);
+                            }, 500);
+                        } else {
+                            startCartPayment()
+                            ReactDOM.render(<GalleryView pictures={information.Pictures} accessid={accessid} preview={false} />, document.querySelector("#gallery"));
+                            ReactDOM.render(<CartView cart={cart} />, document.querySelector("#cart_items_list"));
+                            setTimeout(function () {
+                                scroll.update();
+                                $("#transition").fadeOut(400);
+                            }, 500);
+
+                            $("#message_subtitle").html(information.Message)
+                            $("#cart_amount").html(cart.reduce((total, i) => total + parseInt(i.quantity), 0))
+                            $("#total_price").html(cart.reduce((total, i) => total + (parseInt(i.quantity) * parseInt(i.price)), 0) + "$")
+
+                            $(".gallery_img").click(function () {
+                                $("#picture_view").attr('src', $(this).attr('src'));
+                                $("#download").attr('href', $(this).attr('src'));
+                                $(".printing_size_div").removeClass("printing_size_selected");
+                                $("#printing_price").attr("data-language", "")
+                                $("#printing_price").html("-$")
+                                $("#add_order").attr("data-language", "pick_size")
+                                $("#add_order").html(dictionary.pick_size)
+                                $("#img_view_wrapper, #img_view_bg").fadeIn(200);
+                            })
+
+                            $("#img_view_bg, #close_print").click(function () {
+                                $("#img_view_wrapper, #img_view_bg").fadeOut(200);
+                            })
+
+                            $(".printing_size_div").click(function () {
+                                $(".printing_size_div").removeClass("printing_size_selected");
+                                $(this).addClass("printing_size_selected");
+                                $("#printing_price").attr("data-language", $(this).attr("data-size"))
+                                $("#printing_price").html(dictionary.photography_prices.printing[$(this).attr("data-size-index")])
+                                if (inCart($("#picture_view").attr('src'), $("#printing_price").attr("data-language"))) {
+                                    $("#add_order").attr("data-language", "add_again")
+                                    $("#add_order").html(dictionary.add_again)
+                                } else {
+                                    $("#add_order").attr("data-language", "add_order")
+                                    $("#add_order").html(dictionary.add_order)
+                                }
+                            })
+
+                            $("#add_order").click(function () {
+                                if ($(this).attr("data-language") == "add_order") {
+                                    cart.push({ "picture": $("#picture_view").attr('src'), "size": $("#printing_price").attr("data-language"), "price": ($("#printing_price").attr("data-language") == "4x6" ? dictionary.photography_prices.printing[0] : $("#printing_price").attr("data-language") == "5x7" ? dictionary.photography_prices.printing[1] : $("#printing_price").attr("data-language") == "8x10" ? dictionary.photography_prices.printing[2] : dictionary.photography_prices.printing[3]), "quantity": 1 })
+                                    setCart(cart, accessid)
+                                    $("#cart_amount").html(cart.reduce((total, i) => total + parseInt(i.quantity), 0))
+                                    $("#total_price").html(cart.reduce((total, i) => total + (parseInt(i.quantity) * parseInt(i.price)), 0) + "$")
+                                    $("#add_order").attr("data-language", "add_again")
+                                    $("#add_order").html(dictionary.add_again)
+                                    ReactDOM.render(<CartView cart={cart} />, document.querySelector("#cart_items_list"));
+                                } else if ($(this).attr("data-language") == "add_again") {
+                                    cart.filter(i => (i.picture == $("#picture_view").attr('src')) && i.size == $("#printing_price").attr("data-language"))[0].quantity += 1
+                                    setCart(cart, accessid)
+                                    $("#cart_amount").html(cart.reduce((total, i) => total + parseInt(i.quantity), 0))
+                                    $("#total_price").html(cart.reduce((total, i) => total + (parseInt(i.quantity) * parseInt(i.price)), 0) + "$")
+                                    ReactDOM.render(<CartView cart={cart} />, document.querySelector("#cart_items_list"));
+                                }
+                            })
+
+                            $("#close_cart, #cart_content_backdrop").click(function () {
+                                scroll.start();
+                                $(".c-scrollbar").animate({ "opacity": 1 }, 300)
+                                $("#cart_content").removeClass("cart_active")
+                                $("#cart_content_backdrop").css("pointer-events", "none");
+                                $("#cart_content_backdrop").fadeOut(300);
+
+                                if (inCart($("#picture_view").attr('src'), $("#printing_price").attr("data-language"))) {
+                                    $("#add_order").attr("data-language", "add_again")
+                                    $("#add_order").html(dictionary.add_again)
+                                } else {
+                                    $("#add_order").attr("data-language", "add_order")
+                                    $("#add_order").html(dictionary.add_order)
+                                }
+                            })
+
+                            $("#cart_icon").click(function () {
+                                scroll.stop();
+                                $(".c-scrollbar").animate({ "opacity": 0 }, 300)
+                                $("#cart_content").addClass("cart_active")
+                                $("#cart_content_backdrop").css("pointer-events", "all");
+                                $("#cart_content_backdrop").fadeIn(300);
+                            })
+
+                            $("#show_checkout").click(function () {
+                                if ($(this).attr("data-language") == "checkout") {
+                                    var price = cart.reduce((total, i) => total + (parseInt(i.quantity) * parseInt(i.price)), 0)
+                                    if (price > 0) {
+                                        $("#show_checkout").attr("data-language", "go_back")
+                                        $("#show_checkout").html(dictionary.go_back)
+                                        $("#cart_items_list, #cart_total").addClass("checkout_menu")
+                                        $(".hidden_checkout").fadeIn(200)
+                                    }
+                                } else {
+                                    $("#show_checkout").attr("data-language", "checkout")
+                                    $("#show_checkout").html(dictionary.checkout)
+                                    $("#cart_items_list, #cart_total").removeClass("checkout_menu")
+                                    $("#cart_total.checkout_menu").removeClass("quick_checkout_menu")
+                                    $("#cart_total.checkout_menu").removeClass("cash_checkout_menu")
+                                    $(".hidden_checkout").fadeOut(200)
+                                }
+                            })
+
+                            $("#cart_items_list, #close_cart, #cart_content_backdrop").click(function () {
+                                $("#show_checkout").attr("data-language", "checkout")
+                                $("#show_checkout").html(dictionary.checkout)
+                                $("#cart_items_list, #cart_total").removeClass("checkout_menu")
+                                $("#cart_total.checkout_menu").removeClass("quick_checkout_menu")
+                                $("#cart_total.checkout_menu").removeClass("cash_checkout_menu")
+                                $(".hidden_checkout").fadeOut(200)
+                            })
+
+                            $(".payment_option").click(function () {
+                                if ($(this).hasClass("payment_selected")) {
+                                    $(".payment_selection").fadeOut(200)
+                                    $("#payment_option_text").delay(200).fadeIn(200)
+                                    $("#payment_options").removeClass("payment_options_top")
+                                    $(this).removeClass("payment_selected")
+                                    $("#cart_total.checkout_menu").removeClass("quick_checkout_menu")
+                                    $("#cart_total.checkout_menu").removeClass("cash_checkout_menu")
+                                } else {
+                                    $(".payment_option").removeClass("payment_selected")
+                                    $(".payment_selection").fadeOut(200)
+                                    $("#payment_" + $(this).attr("data-payment-selection").replace('-', '')).delay(200).fadeIn(200)
+                                    $("#payment_option_text").fadeOut(200)
+                                    $("#payment_options").addClass("payment_options_top")
+                                    $(this).addClass("payment_selected")
+                                    if ($(this).attr("data-payment-selection") == "applepay") {
+                                        setTimeout(function () {
+                                            $("#cart_total.checkout_menu").removeClass("cash_checkout_menu")
+                                            $("#cart_total.checkout_menu").addClass("quick_checkout_menu")
+                                        }, 200)
+                                    } else if ($(this).attr("data-payment-selection") == "e-transfer" || $(this).attr("data-payment-selection") == "cash") {
+                                        $("#cart_total.checkout_menu").removeClass("quick_checkout_menu")
+                                        setTimeout(function () {
+                                            $("#cart_total.checkout_menu").addClass("cash_checkout_menu")
+                                        }, 100)
+                                    } else {
+                                        $("#cart_total.checkout_menu").removeClass("quick_checkout_menu")
+                                        $("#cart_total.checkout_menu").removeClass("cash_checkout_menu")
+                                    }
+                                }
+                            })
+                        }
+
+                        $("#logout").click(function () {
+                            localStorage.setItem('accessid', '');
+                            window.location.href = 'login.html';
+                        })
+                    }
+                }
+            });
+
+            function inCart(picture, size) {
+                return cart.filter(i => (i.picture == picture) && i.size == size).length > 0;
+            }
+        });
+
+        function setCart(cart, accessid) {
+            $.ajax({
+                type: "POST",
+                url: "updateInfo.php",
+                dataType: "json",
+                cache: false,
+                data: {
+                    status: "update_cart",
+                    cart: cart,
+                    accessid: accessid,
+                },
+            });
+        }
+    </script>
+</body>
+
+</html>

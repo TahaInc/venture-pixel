@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Venture Pixel">
+    <meta name="keywords" content="login">
+    <meta name="theme-color" content="#fffcf5">
+    <link rel="icon" href="assets/icons/icon (dark).png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" href="assets/icons/icon (light).png" media="(prefers-color-scheme: light)">
+    <title id="title">Venture Pixel - Login</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="js/translate.js" defer></script>
+</head>
+
+<body data-scroll-container>
+    <div id="transition"></div>
+    <header>
+        <div id="navbar">
+            <a id="logo_link" href="home.html"><img id="logo" src="assets/icons/logo.png" alt="Venture Pixel"></a>
+
+            <div id="hamburger_menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div id="nav_content">
+                <a href="home.html" class="nav_links"><span class="nav_text" data-language="home">Home</span></a>
+                <a href="services.html" class="nav_links"><span class="nav_text"
+                        data-language="services">Services</span></a>
+                <a href="pricing.html" class="nav_links"><span class="nav_text"
+                        data-language="pricing">Pricing</span></a>
+                <a href="booking.html" class="nav_links"><span class="nav_text"
+                        data-language="booking">Booking</span></a>
+                <a href="login.html" class="nav_links"><span class="nav_text" data-language="login">Login</span></a>
+                <div class="nav_links" id="language_menu">
+                    <h3 class="language_selector" id="en_selector">EN</h3>
+                    <h3 class="language_selector" id="fr_selector">FR</h3>
+                    <h3 class="language_selector" id="sp_selector">SP</h3>
+                </div>
+                <div id="contact_menu">
+                    <a class="nav_contact_icon" href="https://www.instagram.com/"><img
+                            src="assets/icons/social/instagram.png" alt="Instagram" width="25px">
+                    </a>
+                    <a class="nav_contact_icon" href="mailto:venturepiixel@gmail.com"><img
+                            src="assets/icons/social/email.png" alt="Email" width="30px">
+                    </a>
+                </div>
+                <div id="testimonials">
+                    <span id="quote">&#10077;</span>
+                    <div id="testimony_text">
+                        <h4 id="review_message"></h4>
+                        <h3 id="review_author"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/nav.js" defer></script>
+        </div>
+    </header>
+
+    <main>
+        <div id="login_wrapper">
+            <h2 data-language="login" class="section_title">Login</h2>
+            <input type="input" class="input_field" placeholder="Access ID" id="accessid" />
+
+            <div id="input_wrapper">
+                <h4 data-language="" id="error_msg">&shy;</h4>
+                <button class="button" data-language="">Enter</a>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <footer>
+        <h4 id="copyright" data-language="copyright">© Copyright 2022 Venture Pixel - All Rights Reserved
+        </h4>
+        <div id="contact_menu_footer">
+            <a class="nav_contact_icon" href="https://www.instagram.com/"><img src="assets/icons/social/instagram.png"
+                    alt="Instagram" width="20px">
+            </a>
+            <a class="nav_contact_icon" href="mailto:venturepiixel@gmail.com"><img src="assets/icons/social/email.png"
+                    alt="Email" width="25px">
+            </a>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#transition").fadeOut(400);
+
+            var accessid = localStorage.getItem('accessid');
+            if (accessid != null) {
+                login(accessid);
+            }
+        });
+
+        $(".button").click(function () {
+            if ($("#accessid").val() != "") {
+                $("#error_msg").attr("data-language", "")
+                $("#error_msg").html("&shy;")
+                login($("#accessid").val())
+            } else {
+                $("#error_msg").attr("data-language", "error_empty_field")
+                $("#error_msg").html(dictionary.error_empty_field);
+            }
+        });
+
+        function login(accessid) {
+            $.ajax({
+                type: "POST",
+                url: "login.php",
+                data: { "status": "submit", "accessid": accessid },
+                success: function (result) {
+                    if (result == "admin") {
+                        localStorage.setItem('accessid', accessid);
+                        window.location.href = 'admin.html';
+                    } else if (result == "true") {
+                        localStorage.setItem('accessid', accessid);
+                        window.location.href = 'view.html';
+                    } else if (result == "false") {
+                        $("#error_msg").attr("data-language", "error_invalid_access_code")
+                        $("#error_msg").html(dictionary.error_invalid_access_code);
+                    } else if (result == "logout") {
+                        $("#error_msg").attr("data-language", "")
+                        $("#error_msg").html("&shy;")
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

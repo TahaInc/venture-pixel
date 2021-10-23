@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Venture Pixel">
+    <meta name="keywords" content="home">
+    <meta name="theme-color" content="#fffcf5">
+    <link rel="icon" href="assets/icons/icon (dark).png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" href="assets/icons/icon (light).png" media="(prefers-color-scheme: light)">
+    <title id="title">Venture Pixel - Home</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+</head>
+
+<body class="dark_mode" data-scroll-container>
+    <div id="transition"></div>
+    <header class="dark_mode">
+        <div id="navbar">
+            <a id="logo_link" href="home.html"><img id="logo" class="dark_mode" src="assets/icons/logo.png"
+                    alt="Venture Pixel"></a>
+
+            <div id="hamburger_menu" class="dark_mode">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div id="nav_content">
+                <a href="home.html" class="nav_links"><span class="nav_text" data-language="home">Home</span></a>
+                <a href="services.html" class="nav_links"><span class="nav_text"
+                        data-language="services">Services</span></a>
+                <a href="pricing.html" class="nav_links"><span class="nav_text"
+                        data-language="pricing">Pricing</span></a>
+                <a href="booking.html" class="nav_links"><span class="nav_text"
+                        data-language="booking">Booking</span></a>
+                <a href="login.html" class="nav_links"><span class="nav_text" data-language="login">Login</span></a>
+                <div class="nav_links" id="language_menu">
+                    <h3 class="language_selector" id="en_selector">EN</h3>
+                    <h3 class="language_selector" id="fr_selector">FR</h3>
+                    <h3 class="language_selector" id="sp_selector">SP</h3>
+                </div>
+                <div id="contact_menu">
+                    <a class="nav_contact_icon" href="https://www.instagram.com/"><img
+                            src="assets/icons/social/instagram.png" alt="Instagram" width="25px">
+                    </a>
+                    <a class="nav_contact_icon" href="mailto:venturepiixel@gmail.com"><img
+                            src="assets/icons/social/email.png" alt="Email" width="30px">
+                    </a>
+                </div>
+                <div id="testimonials">
+                    <span id="quote">&#10077;</span>
+                    <div id="testimony_text">
+                        <h4 id="review_message"></h4>
+                        <h3 id="review_author"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/nav.js"></script>
+        </div>
+    </header>
+
+    <main data-scroll-section>
+        <div id="introduction" data-scroll data-scroll-call="introduction">
+            <div id="introduction_menu">
+                <h2 id="slogan" data-language="business_slogan">We capture your memories forever.</h2>
+            </div>
+            <div id="gallery_wrapper">
+                <div id="gallery">
+                    <div class="gallery_column" data-scroll data-scroll-speed="1" data-scroll-target="#gallery_wrapper">
+                        <div class="gallery_image mobile_hidden"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(1\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(2\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(3\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(4\).jpg)">
+                        </div>
+                        <div class="gallery_image mobile_hidden"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(5\).jpg)">
+                        </div>
+                    </div>
+                    <div class="gallery_column" data-scroll data-scroll-speed="-1"
+                        data-scroll-target="#gallery_wrapper">
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(6\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(7\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(8\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(9\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(10\).jpg)">
+                        </div>
+                    </div>
+                    <div class="gallery_column" data-scroll data-scroll-speed="1" data-scroll-target="#gallery_wrapper">
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(11\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(12\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(13\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(14\).jpg)">
+                        </div>
+                        <div class="gallery_image mobile_hidden"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(15\).jpg)">
+                        </div>
+                    </div>
+                    <div class="gallery_column" data-scroll data-scroll-speed="-1"
+                        data-scroll-target="#gallery_wrapper">
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(16\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(17\).jpg)">
+                        </div>
+                        <div class="gallery_image mobile_hidden"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(18\).jpg)">
+                        </div>
+                        <div class="gallery_image mobile_hidden"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(19\).jpg)">
+                        </div>
+                        <div class="gallery_image mobile_hidden"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(20\).jpg)">
+                        </div>
+                    </div>
+                    <div class="gallery_column" data-scroll data-scroll-speed="1" data-scroll-target="#gallery_wrapper">
+                        <div class="gallery_image mobile_hidden"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(21\).jpg)">
+                        </div>
+                        <div class="gallery_image mobile_hidden"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(22\).jpg)">
+                        </div>
+                        <div class="gallery_image mobile_hidden"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(23\).jpg)">
+                        </div>
+                        <div class="gallery_image mobile_hidden"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(24\).jpg)">
+                        </div>
+                        <div class="gallery_image mobile_hidden"
+                            style="background-image:url(assets/pictures/home_gallery/Gallery\ \(25\).jpg)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="description" data-scroll data-scroll-call="description">
+            <h3 id="description_text" data-language="business_desc"></h3>
+            <div id="button_wrapper">
+                <a href="services.html" class="button" data-language="services">Services</a>
+                <a href="booking.html" class="button" data-language="book_now">Book now</a>
+            </div>
+        </div>
+    </main>
+
+    <footer data-scroll-section>
+        <h4 id="copyright" data-language="copyright">© Copyright 2022 Venture Pixel - All Rights Reserved
+        </h4>
+        <div id="contact_menu_footer">
+            <a class="nav_contact_icon" href="https://www.instagram.com/"><img src="assets/icons/social/instagram.png"
+                    alt="Instagram" width="20px">
+            </a>
+            <a class="nav_contact_icon" href="mailto:venturepiixel@gmail.com"><img src="assets/icons/social/email.png"
+                    alt="Email" width="25px">
+            </a>
+        </div>
+    </footer>
+
+    <script src="js/translate.js"></script>
+    <script src="js/scroll.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#transition").fadeOut(400);
+            $(".c-scrollbar").addClass("dark_mode");
+            scroll.update();
+        });
+
+
+        scroll.on("call", (event, direction) => {
+            if (!scroll.isMobile) {
+                if (event == "description" && direction == "enter") {
+                    $("body, header, .c-scrollbar, #logo, #hamburger_menu").removeClass("dark_mode")
+                } else if (event == "description" && direction == "exit") {
+                    $("body, header, .c-scrollbar, #logo, #hamburger_menu").addClass("dark_mode")
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

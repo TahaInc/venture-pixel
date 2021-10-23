@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Venture Pixel">
+    <meta name="keywords" content="services">
+    <meta name="theme-color" content="#fffcf5">
+    <link rel="icon" href="assets/icons/icon (dark).png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" href="assets/icons/icon (light).png" media="(prefers-color-scheme: light)">
+    <title id="title">Venture Pixel - Services</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/services.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+</head>
+
+<body data-scroll-container>
+    <div id="transition"></div>
+    <header>
+        <div id="navbar">
+            <a id="logo_link" href="home.html"><img id="logo" src="assets/icons/logo.png" alt="Venture Pixel"></a>
+
+            <div id="hamburger_menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div id="nav_content">
+                <a href="home.html" class="nav_links"><span class="nav_text" data-language="home">Home</span></a>
+                <a href="services.html" class="nav_links"><span class="nav_text"
+                        data-language="services">Services</span></a>
+                <a href="pricing.html" class="nav_links"><span class="nav_text"
+                        data-language="pricing">Pricing</span></a>
+                <a href="booking.html" class="nav_links"><span class="nav_text"
+                        data-language="booking">Booking</span></a>
+                <a href="login.html" class="nav_links"><span class="nav_text" data-language="login">Login</span></a>
+                <div class="nav_links" id="language_menu">
+                    <h3 class="language_selector" id="en_selector">EN</h3>
+                    <h3 class="language_selector" id="fr_selector">FR</h3>
+                    <h3 class="language_selector" id="sp_selector">SP</h3>
+                </div>
+                <div id="contact_menu">
+                    <a class="nav_contact_icon" href="https://www.instagram.com/"><img
+                            src="assets/icons/social/instagram.png" alt="Instagram" width="25px">
+                    </a>
+                    <a class="nav_contact_icon" href="mailto:venturepiixel@gmail.com"><img
+                            src="assets/icons/social/email.png" alt="Email" width="30px">
+                    </a>
+                </div>
+                <div id="testimonials">
+                    <span id="quote">&#10077;</span>
+                    <div id="testimony_text">
+                        <h4 id="review_message"></h4>
+                        <h3 id="review_author"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/nav.js" defer></script>
+        </div>
+    </header>
+
+    <main>
+        <h2 data-language="services" class="section_title" data-scroll-section>Services</h2>
+
+        <div id="gallery_wrapper" data-scroll-section>
+            <div class="gallery_row">
+                <div class="images_row_wrapper image_row_right" id="row_1">
+                    <div class="images_row" data-scroll="" data-scroll-speed="3" data-scroll-target="#row_1"
+                        data-scroll-direction="horizontal">
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/services/portraits/Portraits\ \(1\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/services/portraits/Portraits\ \(2\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/services/portraits/Portraits\ \(3\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/services/portraits/Portraits\ \(4\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/services/portraits/Portraits\ \(5\).jpg)">
+                        </div>
+                    </div>
+                </div>
+                <h2 class="gallery_text gallery_text_right" data-language="">Automobiles</h2>
+            </div>
+
+            <div class="gallery_row">
+                <div class="images_row_wrapper image_row_left" id="row_2">
+                    <div class="images_row" data-scroll="" data-scroll-speed="-3" data-scroll-target="#row_2"
+                        data-scroll-direction="horizontal">
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/services/automobiles/Automobile\ \(1\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/services/automobiles/Automobile\ \(2\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/services/automobiles/Automobile\ \(3\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/services/automobiles/Automobile\ \(4\).jpg)">
+                        </div>
+                        <div class="gallery_image"
+                            style="background-image:url(assets/pictures/services/automobiles/Automobile\ \(5\).jpg)">
+                        </div>
+                    </div>
+                </div>
+                <h2 class="gallery_text gallery_text_left" data-language="">Landscape</h2>
+            </div>
+        </div>
+
+        <div data-scroll-section>
+            <h2 data-language="" class="section_subtitle" data-scroll-speed="-1.2" data-scroll
+                data-scroll-call="and_more">
+                And
+                more...</h2>
+
+            <div id="gallery_other">
+                <img class="gallery_other_img" src="assets/pictures/services/other/Other (1).jpg" />
+                <img class="gallery_other_img" src="assets/pictures/services/other/Other (2).jpg" />
+                <img class="gallery_other_img" src="assets/pictures/services/other/Other (3).jpg" />
+                <img class="gallery_other_img" src="assets/pictures/services/other/Other (4).jpg" />
+                <img class="gallery_other_img" src="assets/pictures/services/other/Other (5).jpg" />
+                <img class="gallery_other_img" src="assets/pictures/services/other/Other (6).jpg" />
+                <img class="gallery_other_img" src="assets/pictures/services/other/Other (7).jpg" />
+                <img class="gallery_other_img" src="assets/pictures/services/other/Other (8).jpg" />
+                <img class="gallery_other_img" src="assets/pictures/services/other/Other (9).jpg" />
+            </div>
+        </div>
+
+    </main>
+
+    <footer data-scroll-section>
+        <h4 id="copyright" data-language="copyright">© Copyright 2022 Venture Pixel - All Rights Reserved
+        </h4>
+        <div id="contact_menu_footer">
+            <a class="nav_contact_icon" href="https://www.instagram.com/"><img src="assets/icons/social/instagram.png"
+                    alt="Instagram" width="20px">
+            </a>
+            <a class="nav_contact_icon" href="mailto:venturepiixel@gmail.com"><img src="assets/icons/social/email.png"
+                    alt="Email" width="25px">
+            </a>
+        </div>
+    </footer>
+
+    <script src="js/translate.js"></script>
+    <script src="js/scroll.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#transition").fadeOut(400);
+
+            if (scroll.isMobile) {
+
+            }
+
+            scroll.update();
+        });
+
+        scroll.on("call", (event, direction) => {
+            if (!scroll.isMobile) {
+                if (event == "and_more" && direction == "enter") {
+                    $(".section_subtitle").animate({ "opacity": 1 }, 500)
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

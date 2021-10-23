@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Venture Pixel">
+    <meta name="theme-color" content="#fffcf5">
+    <link rel="icon" href="assets/icons/icon (dark).png" media="(prefers-color-scheme: dark)">
+    <link rel="icon" href="assets/icons/icon (light).png" media="(prefers-color-scheme: light)">
+    <title id="title">Venture Pixel - Admin</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="js/translate.js" defer></script>
+</head>
+
+<body>
+    <div id="transition"></div>
+    <header>
+        <div id="navbar">
+            <a id="logo_link" href="home.html"><img id="logo" src="assets/icons/logo.png" alt="Venture Pixel"></a>
+
+            <a href="home.html" id="logout">Logout</a>
+
+        </div>
+        <script src="js/nav.js" defer></script>
+    </header>
+
+    <main>
+        <div id="main_grid">
+            <div class="order_content">
+                <h2>Bookings</h2>
+                <div id="bookings_list">
+
+                </div>
+            </div>
+            <div class="order_content">
+                <h2>Prints orders</h2>
+                <div id="orders_list">
+
+                </div>
+            </div>
+        </div>
+
+        <div id="popup_info">
+
+        </div>
+        <div id="popup_info_bg"></div>
+    </main>
+
+    <footer>
+        <h4 id="copyright" data-language="copyright">© Copyright 2022 Venture Pixel - All Rights Reserved
+        </h4>
+        <div id="contact_menu_footer">
+            <a class="nav_contact_icon" href="https://www.instagram.com/"><img src="assets/icons/social/instagram.png"
+                    alt="Instagram" width="20px">
+            </a>
+            <a class="nav_contact_icon" href="mailto:venturepiixel@gmail.com"><img src="assets/icons/social/email.png"
+                    alt="Email" width="25px">
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel" src="js/bookingOrder.js"></script>
+    <script type="text/babel" src="js/printOrder.js"></script>
+
+    <script type="text/babel">
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                url: "login.php",
+                data: { "status": "submit", "accessid": localStorage.getItem('accessid') },
+                success: function (result) {
+                    if (result == "admin") {
+                        var bookings, orders;
+
+                        $("#transition").fadeOut(400);
+
+                        $.ajax({
+                            url: "data/bookings.json",
+                            dataType: "json",
+                            async: false,
+                            cache: false,
+                            dataType: "json",
+                            success: function (result) {
+                                bookings = result;
+                            },
+                        });
+
+                        $.ajax({
+                            url: "data/order.json",
+                            dataType: "json",
+                            async: false,
+                            cache: false,
+                            dataType: "json",
+                            success: function (result) {
+                                orders = result;
+                            },
+                        });
+
+                        ReactDOM.render(<BookingView bookings={bookings} />, document.querySelector("#bookings_list"));
+                        ReactDOM.render(<OrderView orders={orders} />, document.querySelector("#orders_list"));
+
+                        $(".booking_item").click(function () {
+                            let info;
+
+                            $.ajax({
+                                url: "data/" + $(this).attr("id") + "/info.json",
+                                dataType: "json",
+                                async: false,
+                                cache: false,
+                                dataType: "json",
+                                success: function (result) {
+                                    $("#popup_info").fadeIn(300)
+                                    $("#popup_info_bg").fadeIn(300)
+
+                                    ReactDOM.render(<BookingInfoView booking={result} />, document.querySelector("#popup_info"));
+
+                                    $('#submit').click(function () {
+                                        if (document.getElementById('files').files.length > 0) {
+                                            $("#submit").val("Uploading...")
+
+                                            var uploadImages = new FormData();
+
+                                            for (var i = 0; i < document.getElementById('files').files.length; i++) {
+                                                uploadImages.append(result.accessid + "[]", document.getElementById('files').files[i]);
+                                            }
+
+                                            $.ajax({
+                                                url: 'upload.php',
+                                                type: 'post',
+                                                data: uploadImages,
+                                                contentType: false,
+                                                processData: false,
+                                                dataType: "json",
+                                                success: function (response) {
+                                                    console.log(response)
+                                                    if (response != "error") {
+                                                        ReactDOM.render(<BookingInfoView booking={response} />, document.querySelector("#popup_info"));
+                                                        $("#submit").val("Done!")
+                                                        setTimeout(function () {
+                                                            $("#submit").val("Re-upload")
+                                                        }, 3000)
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+                                },
+                            });
+                        })
+
+
+                        $(".order_item").click(function () {
+                            $("#popup_info").fadeIn(300)
+                            $("#popup_info_bg").fadeIn(300)
+
+                            let orderId = this.getAttribute("id")
+
+                            $.ajax({
+                                type: "POST",
+                                url: "admin.php",
+                                cache: false,
+                                data: { status: "not_new", admin: localStorage.getItem("accessid"), orderid: orderId },
+                                success: function (result) {
+                                    if (result != "error") {
+                                        ReactDOM.render(<OrderInfoView order={orders[orderId]} orderId={orderId} />, document.querySelector("#popup_info"));
+                                    }
+                                },
+                            });
+                        })
+
+                        $("#popup_info_bg").click(function () {
+                            $("#popup_info").fadeOut(300)
+                            $("#popup_info_bg").fadeOut(300)
+                        })
+                    } else if (result == "true") {
+                        localStorage.setItem('accessid', accessid);
+                        window.location.href = 'view.html';
+                    } else if (result == "false" || result == "logout") {
+                        window.location.href = 'login.html';
+                    }
+                }
+            });
+        });
+
+        $("#logout").click(function () {
+            localStorage.setItem('accessid', '');
+        });
+    </script>
+</body>
+
+</html>
